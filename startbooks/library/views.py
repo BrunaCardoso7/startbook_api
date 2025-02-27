@@ -4,7 +4,7 @@ from .models import Author, Book
 from .serializers import (CreateAuthorSerializer, CreateBookSerializer, DeleteAuthorSerializer,
     DeleteBookSerializer, ListAuthorsSerializer, ListBooksSerializer, UpdateAuthorSerializer,
     UpdateBookSerializer)
-
+from django.db.models import Count
 # Create your views here.
 class LibraryViewSet(viewsets.GenericViewSet):
     def get_serializer_class(self):
@@ -28,6 +28,8 @@ class LibraryViewSet(viewsets.GenericViewSet):
             return DeleteBookSerializer
         elif (self.action == "delete_author"):
             return DeleteAuthorSerializer
+        elif (self.action == "ranking_authors"):
+            return ListAuthorsSerializer
         return ListBooksSerializer
     
     def create_book(self, request):
@@ -123,3 +125,20 @@ class LibraryViewSet(viewsets.GenericViewSet):
             return Response({"detail": "Autor removido com sucesso."}, status=status.HTTP_204_NO_CONTENT)
         except Author.DoesNotExist:
             return Response({"detail": "Autor não encontrado."}, status=status.HTTP_404_NOT_FOUND)
+        
+    def ranking_authors(self, request):
+        """
+        Purpose: Retorna os 5 autores com mais de 5 livros publicados.
+        """
+        books_authors = Author.objects.annotate(book_count=Count('book')).filter(book_count__gt=5).order_by('-book_count')[:5]
+
+        ranking_best_authors = [
+            {
+                "id": author.id,
+                "name": author.name,
+                "book_count": author.book_count
+            }
+            for author in books_authors
+        ]
+
+        return Response(ranking_best_authors, status=status.HTTP_200_OK)

@@ -24,4 +24,7 @@ urlpatterns = [
         'patch': 'update_author',
         'delete': 'delete_author'
     }), name="author-detail"),
+    path("ranking/", LibraryViewSet.as_view({
+        'get': 'ranking_authors'
+    }))
 ]
