@@ -1,8 +1,9 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from .models import Author, Book
-from .serializers import (CreateAuthorSerializer, CreateBookSerializer, ListAuthorsSerializer,
-    ListBooksSerializer, UpdateAuthorSerializer, UpdateBookSerializer)
+from .serializers import (CreateAuthorSerializer, CreateBookSerializer, DeleteAuthorSerializer,
+    DeleteBookSerializer, ListAuthorsSerializer, ListBooksSerializer, UpdateAuthorSerializer,
+    UpdateBookSerializer)
 
 # Create your views here.
 class LibraryViewSet(viewsets.GenericViewSet):
@@ -23,6 +24,10 @@ class LibraryViewSet(viewsets.GenericViewSet):
             return UpdateAuthorSerializer
         elif (self.action == "retrieve_author_by_id"):
             return ListAuthorsSerializer
+        elif (self.action == "delete_book"):
+            return DeleteBookSerializer
+        elif (self.action == "delete_author"):
+            return DeleteAuthorSerializer
         return ListBooksSerializer
     
     def create_book(self, request):
@@ -95,5 +100,26 @@ class LibraryViewSet(viewsets.GenericViewSet):
                 return Response(author_serializer.data, status=status.HTTP_200_OK)
             return Response(author_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             
+        except Author.DoesNotExist:
+            return Response({"detail": "Autor não encontrado."}, status=status.HTTP_404_NOT_FOUND)
+    def delete_book(self, request, pk=None):
+        """
+        Purpose: Remove um livro específico pelo UUID
+        """
+        try:
+            book = Book.objects.get(pk=pk)
+            book.delete()
+            return Response({"detail": "Livro removido com sucesso."}, status=status.HTTP_204_NO_CONTENT)
+        except Book.DoesNotExist:
+            return Response({"detail": "Livro não encontrado."}, status=status.HTTP_404_NOT_FOUND)
+
+    def delete_author(self, request, pk=None):
+        """
+        Purpose: Remove um autor específico pelo UUID
+        """
+        try:
+            author = Author.objects.get(pk=pk)
+            author.delete()
+            return Response({"detail": "Autor removido com sucesso."}, status=status.HTTP_204_NO_CONTENT)
         except Author.DoesNotExist:
             return Response({"detail": "Autor não encontrado."}, status=status.HTTP_404_NOT_FOUND)

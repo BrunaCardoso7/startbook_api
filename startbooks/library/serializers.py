@@ -28,3 +28,12 @@ class UpdateAuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
         fields = ['id', 'name'] 
+class DeleteAuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Author
+        fields = ['id'] 
+        
+class DeleteBookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Author
+        fields = ['id'] 

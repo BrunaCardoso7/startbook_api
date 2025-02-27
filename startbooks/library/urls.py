@@ -15,11 +15,13 @@ urlpatterns = [
         path("book/<uuid:pk>/", LibraryViewSet.as_view({
         'get': 'retrieve_book_by_id',
         'put': 'update_books', 
-        'patch': 'update_books'
+        'patch': 'update_books',
+        'delete': 'delete_book'
     }), name="author-detail"),
     path("author/<uuid:pk>/", LibraryViewSet.as_view({
         'get': 'retrieve_author_by_id',
         'put': 'update_author', 
-        'patch': 'update_author'
+        'patch': 'update_author',
+        'delete': 'delete_author'
     }), name="author-detail"),
 ]
