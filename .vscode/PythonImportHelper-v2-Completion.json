@@ -1,5 +1,47 @@
 [
     {
+        "label": "django.db.models.deletion",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.db.models.deletion",
+        "description": "django.db.models.deletion",
+        "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "admin",
         "importPath": "django.contrib",
         "description": "django.contrib",
@@ -24,11 +66,27 @@
         "documentation": {}
     },
     {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
+        "label": "serializers",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
         "isExtraImport": true,
-        "detail": "django.db",
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "viewsets",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "status",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
         "documentation": {}
     },
     {
@@ -40,11 +98,35 @@
         "documentation": {}
     },
     {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
         "isExtraImport": true,
-        "detail": "django.shortcuts",
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "rest_framework.response",
+        "description": "rest_framework.response",
+        "isExtraImport": true,
+        "detail": "rest_framework.response",
         "documentation": {}
     },
     {
@@ -73,14 +155,6 @@
         "documentation": {}
     },
     {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
         "label": "get_wsgi_application",
         "importPath": "django.core.wsgi",
         "description": "django.core.wsgi",
@@ -98,6 +172,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "startbooks.library.migrations.0001_initial",
+        "description": "startbooks.library.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = []\n    operations = [\n        migrations.CreateModel(\n            name=\"Author\",\n            fields=[\n                (\n                    \"id\",\n                    models.UUIDField(",
+        "detail": "startbooks.library.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
         "label": "LibraryConfig",
         "kind": 6,
         "importPath": "startbooks.library.apps",
@@ -111,7 +194,7 @@
         "kind": 6,
         "importPath": "startbooks.library.models",
         "description": "startbooks.library.models",
-        "peekOfCode": "class Author(models.Model):\n    name= models.CharField(max_length=100, null=True, blank=True)\n# Create your models here.\nclass Book(models.Model):\n    title= models.CharField(max_length=100, null=True, blank=True)\n    published_date = models.DateTimeField(null=True)\n    author= models.ForeignKey(Author, related_name=\"book\", on_delete=models.CASCADE)",
+        "peekOfCode": "class Author(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=100)\n# Create your models here.\nclass Book(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    title= models.CharField(max_length=100, null=True, blank=True)\n    published_date = models.DateTimeField(null=True)\n    author= models.ForeignKey(Author, related_name=\"book\", on_delete=models.CASCADE)",
         "detail": "startbooks.library.models",
         "documentation": {}
     },
@@ -120,8 +203,80 @@
         "kind": 6,
         "importPath": "startbooks.library.models",
         "description": "startbooks.library.models",
-        "peekOfCode": "class Book(models.Model):\n    title= models.CharField(max_length=100, null=True, blank=True)\n    published_date = models.DateTimeField(null=True)\n    author= models.ForeignKey(Author, related_name=\"book\", on_delete=models.CASCADE)",
+        "peekOfCode": "class Book(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    title= models.CharField(max_length=100, null=True, blank=True)\n    published_date = models.DateTimeField(null=True)\n    author= models.ForeignKey(Author, related_name=\"book\", on_delete=models.CASCADE)",
         "detail": "startbooks.library.models",
+        "documentation": {}
+    },
+    {
+        "label": "CreateAuthorSerializer",
+        "kind": 6,
+        "importPath": "startbooks.library.serializers",
+        "description": "startbooks.library.serializers",
+        "peekOfCode": "class CreateAuthorSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Author\n        fields = ['id', 'name']  \nclass ListAuthorsSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Author\n        fields = '__all__'  \nclass CreateBookSerializer(serializers.ModelSerializer):\n    class Meta:",
+        "detail": "startbooks.library.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "ListAuthorsSerializer",
+        "kind": 6,
+        "importPath": "startbooks.library.serializers",
+        "description": "startbooks.library.serializers",
+        "peekOfCode": "class ListAuthorsSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Author\n        fields = '__all__'  \nclass CreateBookSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Book\n        fields = ['id', 'title', 'author', 'published_date'] \nclass ListBooksSerializer(serializers.ModelSerializer):\n    class Meta:",
+        "detail": "startbooks.library.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "CreateBookSerializer",
+        "kind": 6,
+        "importPath": "startbooks.library.serializers",
+        "description": "startbooks.library.serializers",
+        "peekOfCode": "class CreateBookSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Book\n        fields = ['id', 'title', 'author', 'published_date'] \nclass ListBooksSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Book\n        fields = '__all__'  \nclass UpdateBookSerializer(serializers.ModelSerializer):\n    class Meta:",
+        "detail": "startbooks.library.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "ListBooksSerializer",
+        "kind": 6,
+        "importPath": "startbooks.library.serializers",
+        "description": "startbooks.library.serializers",
+        "peekOfCode": "class ListBooksSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Book\n        fields = '__all__'  \nclass UpdateBookSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Book\n        fields = ['id', 'title', 'author', 'published_date'] \nclass UpdateAuthorSerializer(serializers.ModelSerializer):\n    class Meta:",
+        "detail": "startbooks.library.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "UpdateBookSerializer",
+        "kind": 6,
+        "importPath": "startbooks.library.serializers",
+        "description": "startbooks.library.serializers",
+        "peekOfCode": "class UpdateBookSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Book\n        fields = ['id', 'title', 'author', 'published_date'] \nclass UpdateAuthorSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Author\n        fields = ['id', 'name']",
+        "detail": "startbooks.library.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "UpdateAuthorSerializer",
+        "kind": 6,
+        "importPath": "startbooks.library.serializers",
+        "description": "startbooks.library.serializers",
+        "peekOfCode": "class UpdateAuthorSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Author\n        fields = ['id', 'name']",
+        "detail": "startbooks.library.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "startbooks.library.urls",
+        "description": "startbooks.library.urls",
+        "peekOfCode": "urlpatterns = [\n    path(\"author/\", LibraryViewSet.as_view({\n        'get': 'retrieve_author',\n        'post': 'create_author'\n    }), name=\"author\"),\n    path(\"book/\", LibraryViewSet.as_view({\n        'get': 'retrieve_books',\n        'post': 'create_book'\n        }), name=\"books\"),\n        path(\"book/<uuid:pk>/\", LibraryViewSet.as_view({",
+        "detail": "startbooks.library.urls",
+        "documentation": {}
+    },
+    {
+        "label": "LibraryViewSet",
+        "kind": 6,
+        "importPath": "startbooks.library.views",
+        "description": "startbooks.library.views",
+        "peekOfCode": "class LibraryViewSet(viewsets.GenericViewSet):\n    def get_serializer_class(self):\n        if self.action == \"create_book\":\n            return CreateBookSerializer\n        elif self.action == \"create_author\":\n            return CreateAuthorSerializer\n        elif (self.action == \"retrieve_books\"):\n            return ListBooksSerializer\n        elif (self.action == \"retrieve_author\"):\n            return ListAuthorsSerializer",
+        "detail": "startbooks.library.views",
         "documentation": {}
     },
     {
@@ -147,7 +302,7 @@
         "kind": 5,
         "importPath": "startbooks.startbooks.settings",
         "description": "startbooks.startbooks.settings",
-        "peekOfCode": "SECRET_KEY = \"django-insecure-bmct3#)co$0t%n5#h30)g7w(r)u3iezme^p8c4srrtn!zrxd#x\"\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",",
+        "peekOfCode": "SECRET_KEY = \"django-insecure-bmct3#)co$0t%n5#h30)g7w(r)u3iezme^p8c4srrtn!zrxd#x\"\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"startbooks\",\n    \"library\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",",
         "detail": "startbooks.startbooks.settings",
         "documentation": {}
     },
@@ -156,7 +311,7 @@
         "kind": 5,
         "importPath": "startbooks.startbooks.settings",
         "description": "startbooks.startbooks.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"startbooks\",\n    \"library\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",",
         "detail": "startbooks.startbooks.settings",
         "documentation": {}
     },
@@ -165,7 +320,7 @@
         "kind": 5,
         "importPath": "startbooks.startbooks.settings",
         "description": "startbooks.startbooks.settings",
-        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"rest_framework\"",
+        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"startbooks\",\n    \"library\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",",
         "detail": "startbooks.startbooks.settings",
         "documentation": {}
     },
@@ -174,7 +329,7 @@
         "kind": 5,
         "importPath": "startbooks.startbooks.settings",
         "description": "startbooks.startbooks.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"rest_framework\"\n]\nMIDDLEWARE = [",
+        "peekOfCode": "INSTALLED_APPS = [\n    \"startbooks\",\n    \"library\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"rest_framework\",",
         "detail": "startbooks.startbooks.settings",
         "documentation": {}
     },
@@ -291,7 +446,7 @@
         "kind": 5,
         "importPath": "startbooks.startbooks.urls",
         "description": "startbooks.startbooks.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"admin/\", admin.site.urls),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"admin/\", admin.site.urls),\n    path('api/v1/', include(\"library.urls\"))\n]",
         "detail": "startbooks.startbooks.urls",
         "documentation": {}
     },

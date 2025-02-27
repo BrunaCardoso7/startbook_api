@@ -1,0 +1,45 @@
+# Arquivos e diretórios do Python
+__pycache__/
+*.py[cod]
+*.pyc
+
+# Ambiente virtual do Python
+venv/
+ENV/
+env/
+.venv/
+
+# Arquivos de banco de dados SQLite
+*.sqlite3
+
+# Arquivos de migração do Django
+migrations/
+!migrations/__init__.py
+
+# Arquivos de configuração sensíveis
+*.env
+.env.*
+.settings_secret.py
+
+# Logs e caches
+*.log
+.cache/
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+
+# IDEs e editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Distribuições do Python
+/dist/
+/build/
+/*.egg-info/
+
+# Outros
+.DS_Store
+Thumbs.db

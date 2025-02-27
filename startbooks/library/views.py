@@ -1,3 +1,99 @@
-from django.shortcuts import render
+from rest_framework import viewsets, status
+from rest_framework.response import Response
+from .models import Author, Book
+from .serializers import (CreateAuthorSerializer, CreateBookSerializer, ListAuthorsSerializer,
+    ListBooksSerializer, UpdateAuthorSerializer, UpdateBookSerializer)
 
 # Create your views here.
+class LibraryViewSet(viewsets.GenericViewSet):
+    def get_serializer_class(self):
+        if self.action == "create_book":
+            return CreateBookSerializer
+        elif self.action == "create_author":
+            return CreateAuthorSerializer
+        elif (self.action == "retrieve_books"):
+            return ListBooksSerializer
+        elif (self.action == "retrieve_author"):
+            return ListAuthorsSerializer
+        elif (self.action == "update_books"):
+            return UpdateBookSerializer
+        elif (self.action == "retrieve_book_by_id"):
+            return ListBooksSerializer
+        elif (self.action == "update_author"):
+            return UpdateAuthorSerializer
+        elif (self.action == "retrieve_author_by_id"):
+            return ListAuthorsSerializer
+        return ListBooksSerializer
+    
+    def create_book(self, request):
+        """
+        Purpose: Cria um novo livro
+        """
+        book_serializer = self.get_serializer(data=request.data)
+        if book_serializer.is_valid():
+            book = book_serializer.save()
+            return Response(book_serializer.data, status=status.HTTP_201_CREATED)
+        return Response(book_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def create_author(self, request):
+        """
+        Purpose: Cria um novo autor
+        """
+        author_serializer = self.get_serializer(data=request.data)
+        if author_serializer.is_valid():  
+            author = author_serializer.save()
+            print(author)
+            return Response(author_serializer.data, status=status.HTTP_201_CREATED)
+        return Response(author_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def retrieve_author(self, request):
+        authors = Author.objects.all()
+        author_serializer = self.get_serializer(authors, many=True)
+        return Response(author_serializer.data, status=status.HTTP_200_OK)
+    def retrieve_books(self, request):
+        books = Book.objects.all()
+        book_serializer = self.get_serializer(books, many=True)
+        return Response(book_serializer.data, status=status.HTTP_200_OK)
+    def update_books(self, request, pk=None, **kwargs):
+        try:
+            book = Book.objects.get(pk=pk)
+            book_serializer = self.get_serializer(book, data=request.data, partial=True)
+            if book_serializer.is_valid():
+                book_serializer.save()
+                return Response(book_serializer.data, status=status.HTTP_200_OK)
+            return Response(book_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+        except Book.DoesNotExist:
+            return Response({"detail": "Livro não encontrado."}, status=status.HTTP_404_NOT_FOUND)
+    def retrieve_book_by_id(self, request, pk=None, **kwargs):
+        """
+        Purpose: Lista livro pelo id
+        """
+        try:
+            book = Book.objects.get(pk=pk)
+            book_serializer = self.get_serializer(book)
+            
+            return Response(book_serializer.data, status=status.HTTP_200_OK)
+        except Book.DoesNotExist:
+            return Response({"detail": "Livro não encontrado."}, status=status.HTTP_404_NOT_FOUND)
+    def retrieve_author_by_id(self, request, pk=None, **kwargs):
+        """
+        Purpose: Lista autor pelo id
+        """
+        try:
+            author = Author.objects.get(pk=pk)
+            author_serializer = self.get_serializer(author)
+            
+            return Response(author_serializer.data, status=status.HTTP_200_OK)
+        except author.DoesNotExist:
+            return Response({"detail": "Livro não encontrado."}, status=status.HTTP_404_NOT_FOUND)
+    def update_author(self, request, pk=None, **kwargs):
+        try:
+            author = Author.objects.get(pk=pk)
+            author_serializer = self.get_serializer(author, data=request.data, partial=True)
+            if author_serializer.is_valid():
+                author_serializer.save()
+                return Response(author_serializer.data, status=status.HTTP_200_OK)
+            return Response(author_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+        except Author.DoesNotExist:
+            return Response({"detail": "Autor não encontrado."}, status=status.HTTP_404_NOT_FOUND)
