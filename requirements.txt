@@ -24,3 +24,4 @@ txaio==23.1.1
 typing_extensions==4.12.2
 websockets==15.0
 zope.interface==7.2
+django-cors-headers===4.7.0
