@@ -66,6 +66,23 @@
         "documentation": {}
     },
     {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncWebsocketConsumer",
+        "importPath": "channels.generic.websocket",
+        "description": "channels.generic.websocket",
+        "isExtraImport": true,
+        "detail": "channels.generic.websocket",
+        "documentation": {}
+    },
+    {
         "label": "serializers",
         "importPath": "rest_framework",
         "description": "rest_framework",
@@ -90,11 +107,51 @@
         "documentation": {}
     },
     {
+        "label": "post_save",
+        "importPath": "django.db.models.signals",
+        "description": "django.db.models.signals",
+        "isExtraImport": true,
+        "detail": "django.db.models.signals",
+        "documentation": {}
+    },
+    {
+        "label": "receiver",
+        "importPath": "django.dispatch",
+        "description": "django.dispatch",
+        "isExtraImport": true,
+        "detail": "django.dispatch",
+        "documentation": {}
+    },
+    {
+        "label": "get_channel_layer",
+        "importPath": "channels.layers",
+        "description": "channels.layers",
+        "isExtraImport": true,
+        "detail": "channels.layers",
+        "documentation": {}
+    },
+    {
+        "label": "async_to_sync",
+        "importPath": "asgiref.sync",
+        "description": "asgiref.sync",
+        "isExtraImport": true,
+        "detail": "asgiref.sync",
+        "documentation": {}
+    },
+    {
         "label": "TestCase",
         "importPath": "django.test",
         "description": "django.test",
         "isExtraImport": true,
         "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
         "documentation": {}
     },
     {
@@ -130,6 +187,14 @@
         "documentation": {}
     },
     {
+        "label": "Count",
+        "importPath": "django.db.models",
+        "description": "django.db.models",
+        "isExtraImport": true,
+        "detail": "django.db.models",
+        "documentation": {}
+    },
+    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -144,6 +209,38 @@
         "description": "django.core.asgi",
         "isExtraImport": true,
         "detail": "django.core.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "ProtocolTypeRouter",
+        "importPath": "channels.routing",
+        "description": "channels.routing",
+        "isExtraImport": true,
+        "detail": "channels.routing",
+        "documentation": {}
+    },
+    {
+        "label": "URLRouter",
+        "importPath": "channels.routing",
+        "description": "channels.routing",
+        "isExtraImport": true,
+        "detail": "channels.routing",
+        "documentation": {}
+    },
+    {
+        "label": "AuthMiddlewareStack",
+        "importPath": "channels.auth",
+        "description": "channels.auth",
+        "isExtraImport": true,
+        "detail": "channels.auth",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationConsumer",
+        "importPath": "library.consumers",
+        "description": "library.consumers",
+        "isExtraImport": true,
+        "detail": "library.consumers",
         "documentation": {}
     },
     {
@@ -185,8 +282,17 @@
         "kind": 6,
         "importPath": "startbooks.library.apps",
         "description": "startbooks.library.apps",
-        "peekOfCode": "class LibraryConfig(AppConfig):\n    default_auto_field = \"django.db.models.BigAutoField\"\n    name = \"library\"",
+        "peekOfCode": "class LibraryConfig(AppConfig):\n    default_auto_field = \"django.db.models.BigAutoField\"\n    name = \"library\"\n    def ready(self):\n        import library.signals",
         "detail": "startbooks.library.apps",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationConsumer",
+        "kind": 6,
+        "importPath": "startbooks.library.consumers",
+        "description": "startbooks.library.consumers",
+        "peekOfCode": "class NotificationConsumer(AsyncWebsocketConsumer):\n    async def connect(self):\n        await self.channel_layer.group_add(\"notifications\", self.channel_name)\n        await self.accept()\n    async def disconnect(self, close_code):\n        await self.channel_layer.group_discard(\"notifications\", self.channel_name)\n    async def notify(self, event):\n        message = event['message']\n        await self.send(text_data=json.dumps({\n            'message': message",
+        "detail": "startbooks.library.consumers",
         "documentation": {}
     },
     {
@@ -248,7 +354,7 @@
         "kind": 6,
         "importPath": "startbooks.library.serializers",
         "description": "startbooks.library.serializers",
-        "peekOfCode": "class UpdateBookSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Book\n        fields = ['id', 'title', 'author', 'published_date'] \nclass UpdateAuthorSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Author\n        fields = ['id', 'name']",
+        "peekOfCode": "class UpdateBookSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Book\n        fields = ['id', 'title', 'author', 'published_date'] \nclass UpdateAuthorSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Author\n        fields = ['id', 'name'] \nclass DeleteAuthorSerializer(serializers.ModelSerializer):\n    class Meta:",
         "detail": "startbooks.library.serializers",
         "documentation": {}
     },
@@ -257,8 +363,35 @@
         "kind": 6,
         "importPath": "startbooks.library.serializers",
         "description": "startbooks.library.serializers",
-        "peekOfCode": "class UpdateAuthorSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Author\n        fields = ['id', 'name']",
+        "peekOfCode": "class UpdateAuthorSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Author\n        fields = ['id', 'name'] \nclass DeleteAuthorSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Author\n        fields = ['id'] \nclass DeleteBookSerializer(serializers.ModelSerializer):\n    class Meta:",
         "detail": "startbooks.library.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "DeleteAuthorSerializer",
+        "kind": 6,
+        "importPath": "startbooks.library.serializers",
+        "description": "startbooks.library.serializers",
+        "peekOfCode": "class DeleteAuthorSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Author\n        fields = ['id'] \nclass DeleteBookSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Author\n        fields = ['id']",
+        "detail": "startbooks.library.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "DeleteBookSerializer",
+        "kind": 6,
+        "importPath": "startbooks.library.serializers",
+        "description": "startbooks.library.serializers",
+        "peekOfCode": "class DeleteBookSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Author\n        fields = ['id']",
+        "detail": "startbooks.library.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "notify_new_autor",
+        "kind": 2,
+        "importPath": "startbooks.library.signals",
+        "description": "startbooks.library.signals",
+        "peekOfCode": "def notify_new_autor(sender, instance, created, **kwargs):\n    if created:\n        channel_layer = get_channel_layer()\n        async_to_sync(channel_layer.group_send)(\n            \"notifications\",\n            {\n                \"type\": \"notify\",\n                \"message\": f\"Novo autor cadastrado: {instance.name}\"\n            }\n        )",
+        "detail": "startbooks.library.signals",
         "documentation": {}
     },
     {
@@ -284,7 +417,7 @@
         "kind": 5,
         "importPath": "startbooks.startbooks.asgi",
         "description": "startbooks.startbooks.asgi",
-        "peekOfCode": "application = get_asgi_application()",
+        "peekOfCode": "application = ProtocolTypeRouter({\n    \"http\": get_asgi_application(),\n    \"websocket\": AuthMiddlewareStack(\n        URLRouter([\n            path(\"ws/notifications/\", NotificationConsumer.as_asgi()),\n        ])\n    ),\n})",
         "detail": "startbooks.startbooks.asgi",
         "documentation": {}
     },
@@ -293,7 +426,7 @@
         "kind": 5,
         "importPath": "startbooks.startbooks.settings",
         "description": "startbooks.startbooks.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = \"django-insecure-bmct3#)co$0t%n5#h30)g7w(r)u3iezme^p8c4srrtn!zrxd#x\"\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = \"django-insecure-bmct3#)co$0t%n5#h30)g7w(r)u3iezme^p8c4srrtn!zrxd#x\"\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [",
         "detail": "startbooks.startbooks.settings",
         "documentation": {}
     },
@@ -302,7 +435,7 @@
         "kind": 5,
         "importPath": "startbooks.startbooks.settings",
         "description": "startbooks.startbooks.settings",
-        "peekOfCode": "SECRET_KEY = \"django-insecure-bmct3#)co$0t%n5#h30)g7w(r)u3iezme^p8c4srrtn!zrxd#x\"\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"startbooks\",\n    \"library\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",",
+        "peekOfCode": "SECRET_KEY = \"django-insecure-bmct3#)co$0t%n5#h30)g7w(r)u3iezme^p8c4srrtn!zrxd#x\"\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"startbooks\",\n    \"library\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",",
         "detail": "startbooks.startbooks.settings",
         "documentation": {}
     },
@@ -311,7 +444,7 @@
         "kind": 5,
         "importPath": "startbooks.startbooks.settings",
         "description": "startbooks.startbooks.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"startbooks\",\n    \"library\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"startbooks\",\n    \"library\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",",
         "detail": "startbooks.startbooks.settings",
         "documentation": {}
     },
@@ -320,7 +453,7 @@
         "kind": 5,
         "importPath": "startbooks.startbooks.settings",
         "description": "startbooks.startbooks.settings",
-        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"startbooks\",\n    \"library\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",",
+        "peekOfCode": "ALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"startbooks\",\n    \"library\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",",
         "detail": "startbooks.startbooks.settings",
         "documentation": {}
     },
@@ -401,7 +534,7 @@
         "kind": 5,
         "importPath": "startbooks.startbooks.settings",
         "description": "startbooks.startbooks.settings",
-        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"",
+        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nASGI_APPLICATION = 'startbooks.asgi.application'",
         "detail": "startbooks.startbooks.settings",
         "documentation": {}
     },
@@ -410,7 +543,7 @@
         "kind": 5,
         "importPath": "startbooks.startbooks.settings",
         "description": "startbooks.startbooks.settings",
-        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nASGI_APPLICATION = 'startbooks.asgi.application'\nCHANNEL_LAYERS = {",
         "detail": "startbooks.startbooks.settings",
         "documentation": {}
     },
@@ -419,7 +552,7 @@
         "kind": 5,
         "importPath": "startbooks.startbooks.settings",
         "description": "startbooks.startbooks.settings",
-        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nASGI_APPLICATION = 'startbooks.asgi.application'\nCHANNEL_LAYERS = {\n    \"default\": {",
         "detail": "startbooks.startbooks.settings",
         "documentation": {}
     },
@@ -428,7 +561,7 @@
         "kind": 5,
         "importPath": "startbooks.startbooks.settings",
         "description": "startbooks.startbooks.settings",
-        "peekOfCode": "STATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"",
+        "peekOfCode": "STATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nASGI_APPLICATION = 'startbooks.asgi.application'\nCHANNEL_LAYERS = {\n    \"default\": {\n        \"BACKEND\": \"channels.layers.InMemoryChannelLayer\"\n    }\n}",
         "detail": "startbooks.startbooks.settings",
         "documentation": {}
     },
@@ -437,7 +570,25 @@
         "kind": 5,
         "importPath": "startbooks.startbooks.settings",
         "description": "startbooks.startbooks.settings",
-        "peekOfCode": "DEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nASGI_APPLICATION = 'startbooks.asgi.application'\nCHANNEL_LAYERS = {\n    \"default\": {\n        \"BACKEND\": \"channels.layers.InMemoryChannelLayer\"\n    }\n}",
+        "detail": "startbooks.startbooks.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ASGI_APPLICATION",
+        "kind": 5,
+        "importPath": "startbooks.startbooks.settings",
+        "description": "startbooks.startbooks.settings",
+        "peekOfCode": "ASGI_APPLICATION = 'startbooks.asgi.application'\nCHANNEL_LAYERS = {\n    \"default\": {\n        \"BACKEND\": \"channels.layers.InMemoryChannelLayer\"\n    }\n}",
+        "detail": "startbooks.startbooks.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CHANNEL_LAYERS",
+        "kind": 5,
+        "importPath": "startbooks.startbooks.settings",
+        "description": "startbooks.startbooks.settings",
+        "peekOfCode": "CHANNEL_LAYERS = {\n    \"default\": {\n        \"BACKEND\": \"channels.layers.InMemoryChannelLayer\"\n    }\n}",
         "detail": "startbooks.startbooks.settings",
         "documentation": {}
     },
