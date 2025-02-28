@@ -399,7 +399,7 @@
         "kind": 5,
         "importPath": "startbooks.library.urls",
         "description": "startbooks.library.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"author/\", LibraryViewSet.as_view({\n        'get': 'retrieve_author',\n        'post': 'create_author'\n    }), name=\"author\"),\n    path(\"book/\", LibraryViewSet.as_view({\n        'get': 'retrieve_books',\n        'post': 'create_book'\n        }), name=\"books\"),\n        path(\"book/<uuid:pk>/\", LibraryViewSet.as_view({",
+        "peekOfCode": "urlpatterns = [\n    path(\"author/\", LibraryViewSet.as_view({\n        'get': 'retrieve_author',\n        'post': 'create_author'\n    }), name=\"author\"),\n    path(\"book/\", LibraryViewSet.as_view({\n        'get': 'retrieve_books',\n        'post': 'create_book'\n        }), name=\"books\"),\n    path(\"book/<uuid:pk>/\", LibraryViewSet.as_view({",
         "detail": "startbooks.library.urls",
         "documentation": {}
     },
@@ -579,7 +579,7 @@
         "kind": 5,
         "importPath": "startbooks.startbooks.settings",
         "description": "startbooks.startbooks.settings",
-        "peekOfCode": "DEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nASGI_APPLICATION = 'startbooks.asgi.application'\nCHANNEL_LAYERS = {\n    \"default\": {\n        \"BACKEND\": \"channels.layers.InMemoryChannelLayer\"\n    }\n}",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nASGI_APPLICATION = 'startbooks.asgi.application'\nCHANNEL_LAYERS = {\n    \"default\": {\n        \"BACKEND\": \"channels.layers.InMemoryChannelLayer\"\n    }\n}\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.postgresql',",
         "detail": "startbooks.startbooks.settings",
         "documentation": {}
     },
@@ -588,7 +588,7 @@
         "kind": 5,
         "importPath": "startbooks.startbooks.settings",
         "description": "startbooks.startbooks.settings",
-        "peekOfCode": "ASGI_APPLICATION = 'startbooks.asgi.application'\nCHANNEL_LAYERS = {\n    \"default\": {\n        \"BACKEND\": \"channels.layers.InMemoryChannelLayer\"\n    }\n}",
+        "peekOfCode": "ASGI_APPLICATION = 'startbooks.asgi.application'\nCHANNEL_LAYERS = {\n    \"default\": {\n        \"BACKEND\": \"channels.layers.InMemoryChannelLayer\"\n    }\n}\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.postgresql',\n        'NAME': 'startbooks',",
         "detail": "startbooks.startbooks.settings",
         "documentation": {}
     },
@@ -597,7 +597,16 @@
         "kind": 5,
         "importPath": "startbooks.startbooks.settings",
         "description": "startbooks.startbooks.settings",
-        "peekOfCode": "CHANNEL_LAYERS = {\n    \"default\": {\n        \"BACKEND\": \"channels.layers.InMemoryChannelLayer\"\n    }\n}",
+        "peekOfCode": "CHANNEL_LAYERS = {\n    \"default\": {\n        \"BACKEND\": \"channels.layers.InMemoryChannelLayer\"\n    }\n}\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.postgresql',\n        'NAME': 'startbooks',\n        'USER': 'brunadev',  ",
+        "detail": "startbooks.startbooks.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASES",
+        "kind": 5,
+        "importPath": "startbooks.startbooks.settings",
+        "description": "startbooks.startbooks.settings",
+        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.postgresql',\n        'NAME': 'startbooks',\n        'USER': 'brunadev',  \n        'PASSWORD': 'bruna8596',  \n        'HOST': 'startbooks',  \n        'PORT': '5432',  \n    }\n}",
         "detail": "startbooks.startbooks.settings",
         "documentation": {}
     },

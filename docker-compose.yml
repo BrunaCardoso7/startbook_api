@@ -11,3 +11,20 @@ services:
     environment:
       - PYTHONPATH=/app/startbooks
       - DEBUG=0
+    depends_on:
+      - db  
+
+  db:
+    image: postgres:13
+    container_name: startbooks_bd
+    environment:
+      POSTGRES_DB: startbooks  
+      POSTGRES_USER: brunadev  
+      POSTGRES_PASSWORD: bruna8596 
+    volumes:
+      - postgres_data:/var/lib/postgresql/data 
+    ports:
+      - "5432:5432" 
+
+volumes:
+  postgres_data:

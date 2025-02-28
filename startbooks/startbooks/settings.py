@@ -133,3 +133,14 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels.layers.InMemoryChannelLayer"
     }
 }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'startbooks',
+        'USER': 'brunadev',  
+        'PASSWORD': 'bruna8596',  
+        'HOST': 'startbooks',  
+        'PORT': '5432',  
+    }
+}
