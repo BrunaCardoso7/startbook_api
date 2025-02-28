@@ -35,7 +35,7 @@ API para gerenciar livros e autores de maneira eficiente. Permite o cadastro, li
 - channels
 
 ## Descrição
-Instruções para configurar o ambiente de desenvolvimento da api de pedidos e executar o projeto em seu sistema.
+Instruções para configurar o ambiente de desenvolvimento da api e executar o projeto em seu sistema.
 ## Pré-requisitos
 
 Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
