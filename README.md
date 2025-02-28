@@ -66,7 +66,7 @@ cd startbook_api
 ### 3. Construa e Suba os Contêineres com o Docker Compose
   
 ```bash
-docker-compose up --build
+docker compose up --build
 
 ```
 
