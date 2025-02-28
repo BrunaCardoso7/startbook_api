@@ -140,7 +140,7 @@ DATABASES = {
         'NAME': 'startbooks',
         'USER': 'brunadev',  
         'PASSWORD': 'bruna8596',  
-        'HOST': 'startbooks',  
+        'HOST': 'startbooks_bd',  
         'PORT': '5432',  
     }
 }

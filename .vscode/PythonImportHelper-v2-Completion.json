@@ -606,7 +606,7 @@
         "kind": 5,
         "importPath": "startbooks.startbooks.settings",
         "description": "startbooks.startbooks.settings",
-        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.postgresql',\n        'NAME': 'startbooks',\n        'USER': 'brunadev',  \n        'PASSWORD': 'bruna8596',  \n        'HOST': 'startbooks',  \n        'PORT': '5432',  \n    }\n}",
+        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.postgresql',\n        'NAME': 'startbooks',\n        'USER': 'brunadev',  \n        'PASSWORD': 'bruna8596',  \n        'HOST': 'startbooks_bd',  \n        'PORT': '5432',  \n    }\n}",
         "detail": "startbooks.startbooks.settings",
         "documentation": {}
     },
