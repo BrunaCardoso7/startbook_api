@@ -10,7 +10,10 @@ API para gerenciar livros e autores de maneira eficiente. Permite o cadastro, li
 ### **Autor**
 - **GET `/author/`**: Retorna a lista de autores cadastrados.
 - **POST `/author/`**: Cria um novo autor.
-
+- **PUT `/author/<uuid:pk>/`**: Atualiza um autores pelo ID.
+- **PATCH `/author/<uuid:pk>/`**: Atualiza parcialmente um autores pelo ID.
+- **DELETE `/author/<uuid:pk>/`**: Deleta um autores pelo ID.
+- 
 ### **Livro**
 - **GET `/book/`**: Retorna a lista de livros cadastrados.
 - **POST `/book/`**: Cria um novo livro.
