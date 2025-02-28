@@ -32,7 +32,7 @@ API para gerenciar livros e autores de maneira eficiente. Permite o cadastro, li
 - Django
 - Django REST Framework
 - Sqlite
-- WebSocket
+- channels
 
 ## Descrição
 Instruções para configurar o ambiente de desenvolvimento da api de pedidos e executar o projeto em seu sistema.
