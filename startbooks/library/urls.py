@@ -12,7 +12,7 @@ urlpatterns = [
         'get': 'retrieve_books',
         'post': 'create_book'
         }), name="books"),
-        path("book/<uuid:pk>/", LibraryViewSet.as_view({
+    path("book/<uuid:pk>/", LibraryViewSet.as_view({
         'get': 'retrieve_book_by_id',
         'put': 'update_books', 
         'patch': 'update_books',
