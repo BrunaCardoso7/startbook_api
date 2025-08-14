@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+import os
 from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -136,10 +137,10 @@ CHANNEL_LAYERS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'startbooks_db',
-        'USER': 'brunadev',
-        'PASSWORD': 'Mghc1kQpmfHevlFpr7Aj9yFX4BueH0qa',
-        'HOST': 'dpg-cv0tmebtq21c73es78dg-a.oregon-postgres.render.com',
+        'NAME': os.getenv('DATABASE_DB'),
+        'USER': os.getenv('USERNAME_DB'),
+        'PASSWORD': os.getenv('PASSWORD_DB'),
+        'HOST': os.getenv('HOSTNAME_DB'),
         'PORT': '5432',
     }
 }
