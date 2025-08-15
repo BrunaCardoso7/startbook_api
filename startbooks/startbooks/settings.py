@@ -76,12 +76,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+
 
 
 # Password validation
@@ -127,10 +122,17 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 ASGI_APPLICATION = 'startbooks.asgi.application'
 
+
+
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
-    }
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [
+                os.getenv("HOSTNAME_REDIS", "redis://localhost:6379")
+            ],
+        },
+    },
 }
 
 
@@ -140,7 +142,7 @@ DATABASES = {
         'NAME': os.getenv('DATABASE_DB'),
         'USER': os.getenv('USERNAME_DB'),
         'PASSWORD': os.getenv('PASSWORD_DB'),
-        'HOST': os.getenv('HOSTNAME_DB'),
+        'HOST': os.getenv('REDIS_URL'),
         'PORT': '5432',
     }
 }
